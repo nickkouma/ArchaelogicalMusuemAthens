@@ -171,13 +171,29 @@ document.addEventListener("DOMContentLoaded", function () {
             audio.play().catch(function(err) {
                 console.log("Audio play failed:", err);
             });
+            document.getElementById("audio-btn").style.display = "inline-block";
         } else {
             audio.pause();
             audio.currentTime = 0;
+            document.getElementById("audio-btn").style.display = "none";
         }
 
     });
 
 });
+
+function toggleAudio() {
+    const audio = document.getElementById("antikythera-audio");
+    const btn = document.getElementById("audio-btn");
+
+    if (audio.paused) {
+        audio.play();
+        btn.innerHTML = "⏹ Stop Music";
+    } else {
+        audio.pause();
+        audio.currentTime = 0;
+        btn.innerHTML = "▶ Play Music";
+    }
+}
 
 console.log("Museum Website Loaded Successfully");
