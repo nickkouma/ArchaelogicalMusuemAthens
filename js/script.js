@@ -169,11 +169,8 @@ window.addEventListener("load", function () {
 
         if (e.to === 2) {
             audio.currentTime = 0;
-            audio.play().catch(function (err) {
-                console.log("Audio play failed:", err);
-            });
             btn.style.display = "inline-block";
-            btn.innerHTML = "⏹ Stop Music";
+            btn.innerHTML = "▶ Play Music";
         } else {
             audio.pause();
             audio.currentTime = 0;
