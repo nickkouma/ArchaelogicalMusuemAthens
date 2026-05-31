@@ -158,4 +158,23 @@ function setLanguage(lang) {
     }
 }
 
+// CAROUSEL AUDIO - play music only on Antikythera slide (index 2)
+document.addEventListener("DOMContentLoaded", function () {
+
+    const carousel = document.getElementById("museumCarousel");
+    const audio = document.getElementById("antikythera-audio");
+
+    carousel.addEventListener("slid.bs.carousel", function (e) {
+
+        if (e.to === 2) {
+            audio.play();
+        } else {
+            audio.pause();
+            audio.currentTime = 0;
+        }
+
+    });
+
+});
+
 console.log("Museum Website Loaded Successfully");
