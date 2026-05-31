@@ -167,7 +167,10 @@ document.addEventListener("DOMContentLoaded", function () {
     carousel.addEventListener("slid.bs.carousel", function (e) {
 
         if (e.to === 2) {
-            audio.play();
+            audio.currentTime = 0;
+            audio.play().catch(function(err) {
+                console.log("Audio play failed:", err);
+            });
         } else {
             audio.pause();
             audio.currentTime = 0;
