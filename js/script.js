@@ -158,42 +158,43 @@ function setLanguage(lang) {
     }
 }
 
-// CAROUSEL AUDIO - play music only on Antikythera slide (index 2)
-document.addEventListener("DOMContentLoaded", function () {
+// CAROUSEL AUDIO
+window.addEventListener("load", function () {
 
     const carousel = document.getElementById("museumCarousel");
     const audio = document.getElementById("antikythera-audio");
+    const btn = document.getElementById("audio-btn");
 
     carousel.addEventListener("slid.bs.carousel", function (e) {
 
         if (e.to === 2) {
             audio.currentTime = 0;
-            audio.play().catch(function(err) {
+            audio.play().catch(function (err) {
                 console.log("Audio play failed:", err);
             });
-            document.getElementById("audio-btn").style.display = "inline-block";
+            btn.style.display = "inline-block";
+            btn.innerHTML = "⏹ Stop Music";
         } else {
             audio.pause();
             audio.currentTime = 0;
-            document.getElementById("audio-btn").style.display = "none";
+            btn.style.display = "none";
+        }
+
+    });
+
+    btn.addEventListener("click", function () {
+
+        if (audio.paused) {
+            audio.play();
+            btn.innerHTML = "⏹ Stop Music";
+        } else {
+            audio.pause();
+            audio.currentTime = 0;
+            btn.innerHTML = "▶ Play Music";
         }
 
     });
 
 });
-
-function toggleAudio() {
-    const audio = document.getElementById("antikythera-audio");
-    const btn = document.getElementById("audio-btn");
-
-    if (audio.paused) {
-        audio.play();
-        btn.innerHTML = "⏹ Stop Music";
-    } else {
-        audio.pause();
-        audio.currentTime = 0;
-        btn.innerHTML = "▶ Play Music";
-    }
-}
 
 console.log("Museum Website Loaded Successfully");
